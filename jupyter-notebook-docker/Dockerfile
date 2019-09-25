@@ -26,7 +26,7 @@ RUN conda install -y jupyter
 RUN pip install mlflow
 RUN conda install -c anaconda psycopg2
 
-# EXPOSE 8888
+EXPOSE 8888
 
 WORKDIR /usr/src
 
