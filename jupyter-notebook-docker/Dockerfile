@@ -20,11 +20,18 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 RUN bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b
 RUN rm Miniconda3-latest-Linux-x86_64.sh
 
+COPY conda_requirements.txt .
+COPY pip_requirements.txt .
+
 ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
-RUN conda install -y jupyter
-RUN pip install mlflow
+# RUN conda install -y jupyter
+RUN conda install -y --file conda_requirements.txt
+RUN pip install -r pip_requirements.txt
+# RUN pip install mlflow
 RUN conda install -c anaconda psycopg2
+RUN conda install -c conda-forge jupyter_contrib_nbextensions
+# RUN pip install "dask[complete]"
 
 EXPOSE 8888
 
