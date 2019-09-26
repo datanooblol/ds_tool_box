@@ -1,9 +1,3 @@
-# FROM jupyter/scipy-notebook
-
-# RUN conda install --quiet --yes \
-#     'mlflow=1.0.0' \
-#     'psycopg2'
-
 FROM centos
 
 #EXPORT = set variable
@@ -25,13 +19,10 @@ COPY pip_requirements.txt .
 
 ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
-# RUN conda install -y jupyter
 RUN conda install -y --file conda_requirements.txt
 RUN pip install -r pip_requirements.txt
-# RUN pip install mlflow
 RUN conda install -c anaconda psycopg2
 RUN conda install -c conda-forge jupyter_contrib_nbextensions
-# RUN pip install "dask[complete]"
 
 EXPOSE 8888
 
