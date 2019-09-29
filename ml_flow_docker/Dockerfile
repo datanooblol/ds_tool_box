@@ -1,5 +1,6 @@
 FROM python:3.7.0
 
+RUN pip install --upgrade pip
 RUN pip install mlflow
 RUN pip install psycopg2
 
