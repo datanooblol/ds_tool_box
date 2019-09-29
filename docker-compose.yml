@@ -2,7 +2,7 @@ version: '3'
 services:
   notebook:
     build:
-      context: ./jupyter-notebook-docker
+      context: ./jupyter_notebook_docker
     ports:
       - "8888:8888"
     depends_on: 
@@ -13,7 +13,7 @@ services:
       - ./project:/usr/src
   mlflow:
     build:
-      context: ./ml-flow-docker
+      context: ./ml_flow_docker
     expose: 
       - "5000"
     ports:
@@ -22,7 +22,7 @@ services:
       - postgres
   postgres:
     build:
-      context: ./postgres-docker
+      context: ./postgres_docker
     restart: always
     environment:
       POSTGRES_USER: 'admin'
@@ -33,6 +33,8 @@ services:
       - postgres-store:/var/lib/postgresql/data
     # environment:
     #   PGDATA: /tmp
+  airflow:
+    image: puckel/docker-airflow
 
 volumes:
   postgres-store:
