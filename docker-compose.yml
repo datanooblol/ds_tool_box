@@ -33,8 +33,19 @@ services:
       - postgres-store:/var/lib/postgresql/data
     # environment:
     #   PGDATA: /tmp
-  airflow:
-    image: puckel/docker-airflow
+  # airflow:
+  #   image: puckel/docker-airflow
+  #   restart: always
+  #   environment:
+  #     - LOAD_EX=n
+  #     - EXECUTOR=Local
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #   - ./dags:/usr/local/airflow/dags
+  #   command: webserver
 
 volumes:
   postgres-store:
